@@ -26,7 +26,7 @@ others.
 ```bash
 mvn spring-boot:run
 
-# The application will start a users microservice on random port
+# The application will start a user's microservice on random port that can be accessed by gateway using localhost:8765/users 
 ```
 
 ## 🔨 Tech stack
