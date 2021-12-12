@@ -2,6 +2,7 @@ package br.com.llocatti.spendev.users.mappers;
 
 import br.com.llocatti.spendev.users.dtos.requests.FindUsersRequest;
 import br.com.llocatti.spendev.users.dtos.responses.FindUsersResponse;
+import br.com.llocatti.spendev.users.dtos.responses.UserResponse;
 import br.com.llocatti.spendev.users.entities.User;
 import org.modelmapper.ModelMapper;
 
@@ -21,7 +22,7 @@ public class FindUsersMapper {
   public static FindUsersResponse toResponse(List<User> findUsers) {
     return new FindUsersResponse(
         findUsers.stream()
-            .map(findUser -> MAPPER.map(findUser, FindUsersResponse.User.class))
+            .map(findUser -> MAPPER.map(findUser, UserResponse.class))
             .collect(Collectors.toList()));
   }
 }

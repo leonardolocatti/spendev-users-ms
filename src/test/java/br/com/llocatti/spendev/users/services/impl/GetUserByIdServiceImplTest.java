@@ -37,12 +37,12 @@ class GetUserByIdServiceImplTest {
 
     GetUserByIdResponse getUserByIdResponse = getUserByIdService.execute(getUserByIdRequest);
 
-    assertThat(getUserByIdResponse.getId()).isEqualTo(findUser.getId());
-    assertThat(getUserByIdResponse.getName()).isEqualTo(findUser.getName());
-    assertThat(getUserByIdResponse.getEmail()).isEqualTo(findUser.getEmail());
-    assertThat(getUserByIdResponse.getRoles().iterator().next().getId())
+    assertThat(getUserByIdResponse.getUser().getId()).isEqualTo(findUser.getId());
+    assertThat(getUserByIdResponse.getUser().getName()).isEqualTo(findUser.getName());
+    assertThat(getUserByIdResponse.getUser().getEmail()).isEqualTo(findUser.getEmail());
+    assertThat(getUserByIdResponse.getUser().getRoles().iterator().next().getId())
         .isEqualTo(findUser.getRoles().iterator().next().getId());
-    assertThat(getUserByIdResponse.getRoles().iterator().next().getRoleName())
+    assertThat(getUserByIdResponse.getUser().getRoles().iterator().next().getRoleName())
         .isEqualTo(findUser.getRoles().iterator().next().getRoleName());
   }
 

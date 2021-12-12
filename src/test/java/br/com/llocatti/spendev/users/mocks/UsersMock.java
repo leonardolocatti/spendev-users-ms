@@ -4,6 +4,7 @@ import br.com.llocatti.spendev.users.dtos.requests.FindUsersRequest;
 import br.com.llocatti.spendev.users.dtos.requests.GetUserByIdRequest;
 import br.com.llocatti.spendev.users.dtos.responses.FindUsersResponse;
 import br.com.llocatti.spendev.users.dtos.responses.GetUserByIdResponse;
+import br.com.llocatti.spendev.users.dtos.responses.UserResponse;
 import br.com.llocatti.spendev.users.entities.Role;
 import br.com.llocatti.spendev.users.entities.User;
 
@@ -37,13 +38,7 @@ public class UsersMock {
   }
 
   public static GetUserByIdResponse validGetUserByIdResponse() {
-    return new GetUserByIdResponse()
-        .setId(USER_ID)
-        .setName(USER_NAME)
-        .setEmail(USER_EMAIL)
-        .setRoles(
-            Collections.singleton(
-                new GetUserByIdResponse.Role().setId(ROLE_ID).setRoleName(ROLE_NAME)));
+    return new GetUserByIdResponse().setUser(validUserResponse());
   }
 
   public static FindUsersRequest validFindUsersRequest() {
@@ -51,14 +46,15 @@ public class UsersMock {
   }
 
   public static FindUsersResponse validFindUsersResponse() {
-    return new FindUsersResponse(
-        Collections.singletonList(
-            new FindUsersResponse.User()
-                .setId(USER_ID)
-                .setName(USER_NAME)
-                .setEmail(USER_EMAIL)
-                .setRoles(
-                    Collections.singleton(
-                        new FindUsersResponse.Role().setId(ROLE_ID).setRoleName(ROLE_NAME)))));
+    return new FindUsersResponse(Collections.singletonList(validUserResponse()));
+  }
+
+  private static UserResponse validUserResponse() {
+    return new UserResponse()
+        .setId(USER_ID)
+        .setName(USER_NAME)
+        .setEmail(USER_EMAIL)
+        .setRoles(
+            Collections.singleton(new UserResponse.Role().setId(ROLE_ID).setRoleName(ROLE_NAME)));
   }
 }

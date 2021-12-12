@@ -44,17 +44,18 @@ class UsersControllerTest {
     mockMvc
         .perform(get(USERS_PATH.concat("/1")).accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$.id", equalTo(getUserByIdResponse.getId().intValue())))
-        .andExpect(jsonPath("$.name", equalTo(getUserByIdResponse.getName())))
-        .andExpect(jsonPath("$.email", equalTo(getUserByIdResponse.getEmail())))
+        .andExpect(jsonPath("$.id", equalTo(getUserByIdResponse.getUser().getId().intValue())))
+        .andExpect(jsonPath("$.name", equalTo(getUserByIdResponse.getUser().getName())))
+        .andExpect(jsonPath("$.email", equalTo(getUserByIdResponse.getUser().getEmail())))
         .andExpect(
             jsonPath(
                 "$.roles[0].id",
-                equalTo(getUserByIdResponse.getRoles().iterator().next().getId().intValue())))
+                equalTo(
+                    getUserByIdResponse.getUser().getRoles().iterator().next().getId().intValue())))
         .andExpect(
             jsonPath(
                 "$.roles[0].roleName",
-                equalTo(getUserByIdResponse.getRoles().iterator().next().getRoleName())));
+                equalTo(getUserByIdResponse.getUser().getRoles().iterator().next().getRoleName())));
   }
 
   @Test
