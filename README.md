@@ -31,4 +31,9 @@ mvn spring-boot:run
 
 ## 🔨 Tech stack
 
+- **[Spring Cloud Netflix](https://spring.io/projects/spring-cloud-netflix)**
+- **[ModelMapper](http://modelmapper.org/)**
+- **[H2 Database](https://www.h2database.com/html/main.html)**
+- **[Lombok](https://projectlombok.org/)**
+
 > See the file [pom.xml](./pom.xml)
