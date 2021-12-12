@@ -22,7 +22,7 @@ public class GetUserByIdResponse implements Serializable {
 
   @Getter
   @Setter
-  private static class Role implements Serializable {
+  public static class Role implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
