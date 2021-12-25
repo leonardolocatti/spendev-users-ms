@@ -1,4 +1,4 @@
-package br.com.llocatti.spendev.users.controllers;
+package br.com.llocatti.spendev.users.controllers.impl;
 
 import br.com.llocatti.spendev.users.dtos.requests.FindUsersRequest;
 import br.com.llocatti.spendev.users.dtos.requests.GetUserByIdRequest;
@@ -23,8 +23,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(UsersController.class)
-class UsersControllerTest {
+@WebMvcTest(UsersControllerImpl.class)
+class UsersControllerImplTest {
 
   static final String USERS_PATH = "/users";
 

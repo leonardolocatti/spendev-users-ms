@@ -1,6 +1,5 @@
 package br.com.llocatti.spendev.users.dtos.responses;
 
-import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,5 +14,5 @@ public class FindUsersResponse implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  @JsonValue private List<UserResponse> users;
+  private List<UserResponse> users;
 }
