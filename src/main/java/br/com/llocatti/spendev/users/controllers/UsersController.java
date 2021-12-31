@@ -48,7 +48,7 @@ public interface UsersController {
             description = "User email",
             in = ParameterIn.QUERY,
             name = "email",
-            schema = @Schema(implementation = Long.class))
+            schema = @Schema(implementation = String.class))
       },
       responses = {
         @ApiResponse(
