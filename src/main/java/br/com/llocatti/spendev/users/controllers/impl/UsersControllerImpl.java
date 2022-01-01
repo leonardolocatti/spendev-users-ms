@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/users")
 @CrossOrigin(
-    origins = "*",
+    origins = "http://localhost:8765",
     methods = {RequestMethod.GET})
 public class UsersControllerImpl implements UsersController {
 
