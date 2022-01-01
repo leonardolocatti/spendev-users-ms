@@ -4,29 +4,65 @@ import br.com.llocatti.spendev.users.dtos.requests.FindUsersRequest;
 import br.com.llocatti.spendev.users.dtos.requests.GetUserByIdRequest;
 import br.com.llocatti.spendev.users.dtos.responses.FindUsersResponse;
 import br.com.llocatti.spendev.users.dtos.responses.GetUserByIdResponse;
-import br.com.llocatti.spendev.users.services.FindUsersService;
-import br.com.llocatti.spendev.users.services.GetUserByIdService;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/users")
-public class UsersController {
+@Tag(name = "Users API", description = "Users operations")
+public interface UsersController {
 
-  @Autowired private GetUserByIdService getUserByIdService;
+  @Operation(
+      description = "Get an user by id",
+      parameters = {
+        @Parameter(
+            description = "User ID",
+            in = ParameterIn.PATH,
+            name = "id",
+            schema = @Schema(implementation = Long.class))
+      },
+      responses = {
+        @ApiResponse(
+            description = "User",
+            responseCode = "200",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = GetUserByIdResponse.class))),
+        @ApiResponse(
+            description = "User not found",
+            responseCode = "404",
+            content = @Content(mediaType = "application/json"))
+      })
+  ResponseEntity<GetUserByIdResponse> getUserById(
+      @Parameter(hidden = true) GetUserByIdRequest getUserByIdRequest);
 
-  @Autowired private FindUsersService findUsersService;
-
-  @GetMapping("/{id}")
-  public ResponseEntity<GetUserByIdResponse> getUserById(GetUserByIdRequest getUserByIdRequest) {
-    return ResponseEntity.ok(getUserByIdService.execute(getUserByIdRequest));
-  }
-
-  @GetMapping
-  public ResponseEntity<FindUsersResponse> findUsers(FindUsersRequest findUsersRequest) {
-    return ResponseEntity.ok(findUsersService.execute(findUsersRequest));
-  }
+  @Operation(
+      description = "Find users",
+      parameters = {
+        @Parameter(
+            description = "User email",
+            in = ParameterIn.QUERY,
+            name = "email",
+            schema = @Schema(implementation = String.class))
+      },
+      responses = {
+        @ApiResponse(
+            description = "User",
+            responseCode = "200",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = FindUsersResponse.class))),
+        @ApiResponse(
+            description = "User not found",
+            responseCode = "404",
+            content = @Content(mediaType = "application/json"))
+      })
+  ResponseEntity<FindUsersResponse> findUsers(
+      @Parameter(hidden = true) FindUsersRequest findUsersRequest);
 }

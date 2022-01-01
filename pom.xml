@@ -6,8 +6,8 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.5.7</version>
-    <relativePath/> <!-- lookup parent from repository -->
+    <version>2.6.2</version>
+    <relativePath/>
   </parent>
 
   <groupId>br.com.llocatti</groupId>
@@ -17,18 +17,13 @@
   <description>Spendev users microservice</description>
 
   <properties>
-    <java.version>11</java.version>
-    <spring-cloud.version>2020.0.4</spring-cloud.version>
+    <java.version>17</java.version>
+    <spring-cloud.version>2021.0.0</spring-cloud.version>
     <sonar.organization>leonardolocatti</sonar.organization>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
-    </dependency>
-
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
@@ -40,9 +35,20 @@
     </dependency>
 
     <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>org.modelmapper</groupId>
       <artifactId>modelmapper</artifactId>
       <version>2.4.5</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-webmvc-core</artifactId>
+      <version>1.5.13</version>
     </dependency>
 
     <dependency>
@@ -55,11 +61,6 @@
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <optional>true</optional>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
     </dependency>
 
     <dependency>
@@ -87,6 +88,8 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
+          <pullPolicy>IF_NOT_PRESENT</pullPolicy>
+
           <excludes>
             <exclude>
               <groupId>org.projectlombok</groupId>

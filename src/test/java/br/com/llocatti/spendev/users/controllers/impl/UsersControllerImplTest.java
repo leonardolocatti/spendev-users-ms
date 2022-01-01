@@ -1,4 +1,4 @@
-package br.com.llocatti.spendev.users.controllers;
+package br.com.llocatti.spendev.users.controllers.impl;
 
 import br.com.llocatti.spendev.users.dtos.requests.FindUsersRequest;
 import br.com.llocatti.spendev.users.dtos.requests.GetUserByIdRequest;
@@ -23,8 +23,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(UsersController.class)
-class UsersControllerTest {
+@WebMvcTest(UsersControllerImpl.class)
+class UsersControllerImplTest {
 
   static final String USERS_PATH = "/users";
 
@@ -69,12 +69,12 @@ class UsersControllerTest {
         .perform(get(USERS_PATH).queryParam("email", "email").accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(
-            jsonPath("$[0].id", equalTo(findUsersResponse.getUsers().get(0).getId().intValue())))
-        .andExpect(jsonPath("$[0].name", equalTo(findUsersResponse.getUsers().get(0).getName())))
-        .andExpect(jsonPath("$[0].email", equalTo(findUsersResponse.getUsers().get(0).getEmail())))
+            jsonPath("$.users[0].id", equalTo(findUsersResponse.getUsers().get(0).getId().intValue())))
+        .andExpect(jsonPath("$.users[0].name", equalTo(findUsersResponse.getUsers().get(0).getName())))
+        .andExpect(jsonPath("$.users[0].email", equalTo(findUsersResponse.getUsers().get(0).getEmail())))
         .andExpect(
             jsonPath(
-                "$[0].roles[0].id",
+                "$.users[0].roles[0].id",
                 equalTo(
                     findUsersResponse
                         .getUsers()
@@ -86,7 +86,7 @@ class UsersControllerTest {
                         .intValue())))
         .andExpect(
             jsonPath(
-                "$[0].roles[0].roleName",
+                "$.users[0].roles[0].roleName",
                 equalTo(
                     findUsersResponse
                         .getUsers()
