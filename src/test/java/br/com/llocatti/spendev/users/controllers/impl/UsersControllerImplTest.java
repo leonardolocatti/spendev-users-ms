@@ -69,12 +69,12 @@ class UsersControllerImplTest {
         .perform(get(USERS_PATH).queryParam("email", "email").accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(
-            jsonPath("$[0].id", equalTo(findUsersResponse.getUsers().get(0).getId().intValue())))
-        .andExpect(jsonPath("$[0].name", equalTo(findUsersResponse.getUsers().get(0).getName())))
-        .andExpect(jsonPath("$[0].email", equalTo(findUsersResponse.getUsers().get(0).getEmail())))
+            jsonPath("$.users[0].id", equalTo(findUsersResponse.getUsers().get(0).getId().intValue())))
+        .andExpect(jsonPath("$.users[0].name", equalTo(findUsersResponse.getUsers().get(0).getName())))
+        .andExpect(jsonPath("$.users[0].email", equalTo(findUsersResponse.getUsers().get(0).getEmail())))
         .andExpect(
             jsonPath(
-                "$[0].roles[0].id",
+                "$.users[0].roles[0].id",
                 equalTo(
                     findUsersResponse
                         .getUsers()
@@ -86,7 +86,7 @@ class UsersControllerImplTest {
                         .intValue())))
         .andExpect(
             jsonPath(
-                "$[0].roles[0].roleName",
+                "$.users[0].roles[0].roleName",
                 equalTo(
                     findUsersResponse
                         .getUsers()
