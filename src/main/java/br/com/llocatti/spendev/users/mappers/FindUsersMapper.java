@@ -7,7 +7,6 @@ import br.com.llocatti.spendev.users.entities.User;
 import org.modelmapper.ModelMapper;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class FindUsersMapper {
 
@@ -21,8 +20,6 @@ public class FindUsersMapper {
 
   public static FindUsersResponse toResponse(List<User> findUsers) {
     return new FindUsersResponse(
-        findUsers.stream()
-            .map(findUser -> MAPPER.map(findUser, UserResponse.class))
-            .collect(Collectors.toList()));
+        findUsers.stream().map(findUser -> MAPPER.map(findUser, UserResponse.class)).toList());
   }
 }
